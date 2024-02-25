@@ -4,6 +4,7 @@ export default authMiddleware({
   // Routes that can be accessed while signed out
   // Routes that can always be accessed, and have
   // no authentication information
+  publicRoutes: ['/','/api/webhooks/(.*)']
 });
  
 export const config = {
