@@ -3,11 +3,34 @@ import { getCurrentUser } from "./auth-service";
 import { db } from "@/lib/db";
 
 export const getRecommended = async () => {
-    const users = await db.user.findMany({
+   let userId;
+
+   try{
+      const self = await getCurrentUser();
+      userId = self.id;
+   } catch (e){
+     userId = null
+   }
+
+   let users = [];
+   if(userId){
+    users = await db.user.findMany({
+        where:{
+            NOT:{
+                id: userId,
+            },
+        },
+        orderBy: {
+            createdAt: "desc",
+        }
+    })
+   }
+   else{
+    users = await db.user.findMany({
         orderBy: {
             createdAt: "desc",
         },
     });
-
+   }
     return users;
 }
