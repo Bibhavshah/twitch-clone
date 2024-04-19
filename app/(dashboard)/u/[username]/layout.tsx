@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 
 import { getUserByUsername } from "@/lib/auth-service"
 
-import { Navbar } from "./_components/Navbar/page"
+import { Navbar } from "./_components/navbar"
 import { Sidebar } from "./_components/sidebar";
 import { Container } from "./_components/container";
 
